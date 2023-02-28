@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: true
+  tasks:
+  - name: ping hosts
+    ping:
+    register: ping_results
+  - name: ping results
+    debug:
+      var: ping_results

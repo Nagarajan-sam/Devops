@@ -1,0 +1,19 @@
+---
+- name: lab1 webserver playbook
+  hosts: webserver
+  tasks:
+    - name: install httpd
+  yum: name=httpd
+    - name: enable and start httpd
+      service: name=httpd enable=true start=started
+    - name: creating the index.html
+    cpoy:
+      content: "Welcome to my web server"
+      dest: /var/www/html/index.html
+      mode: 0444
+  - name: open firewll port
+    firewalld:
+      service: httpd
+      permanent: true
+      state: enabled
+      immediate: yes
